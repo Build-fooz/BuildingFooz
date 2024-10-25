@@ -1,0 +1,4 @@
+
+[submodule "BuildingFooz"]
+	path = BuildingFooz
+	url = https://github.com/Build-fooz/BuildingFooz.git
