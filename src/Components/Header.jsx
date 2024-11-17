@@ -7,8 +7,8 @@ const styles = {
   wrapper: `bg-[#fb5b5b] text-black text-center py-2 font-bold fixed top-0 w-full z-50`,
   headermain: `mt-10 bg-[#fdbdbd] text-center flex items-center h-[80px]`,
   navLink: `text-[18px] font-medium transition-colors duration-300 hover:text-black`,
-  dropdown: `absolute top-[100%] left-0 bg-white border border-gray-200 shadow-md rounded-md w-[200px] text-left mt-1`,
-  dropdownItem: `px-2 py-2 text-[15px] text-black hover:bg-gray-100 cursor-pointer transition-colors duration-200`,
+  dropdown: `absolute top-[110%] left-0 bg-white border border-gray-200 shadow-md rounded-md w-[200px] text-left mt-1 z-[50]`,
+  dropdownItem: `px-4 py-2 text-[15px] text-black hover:bg-gray-100 cursor-pointer transition-colors duration-200`,
   moreButton: `flex items-center text-[18px] font-medium transition-colors duration-300 hover:text-black`,
   moreText: `mr-1`,
 };
@@ -18,7 +18,11 @@ const Header = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+    setDropdownVisible((prevState) => !prevState);
+  };
+
+  const closeDropdown = () => {
+    setDropdownVisible(false);
   };
 
   return (
@@ -28,7 +32,7 @@ const Header = () => {
       </div>
       <header className={styles.headermain}>
         <div className="flex cursor-pointer">
-          <img src="/file.png" alt="" className="h-[50px] w-[170px] mt-3" />
+          <img src="/file.png" alt="Logo" className="h-[50px] w-[150px] px-2 mt-3" />
         </div>
         <div className="mx-auto text-2xl">
           <nav className="hidden md:flex space-x-6">
@@ -68,7 +72,6 @@ const Header = () => {
             >
               Favorite
             </Link>
-
             <div className="relative">
               <button
                 onClick={toggleDropdown}
@@ -76,90 +79,38 @@ const Header = () => {
                   isActive === "more" ? "text-red-600" : "text-gray-500"
                 }`}
               >
-                <span className={styles.moreText}>More</span> 
+                <span className={styles.moreText}>More</span>
                 <IoIosArrowDown />
               </button>
               {dropdownVisible && (
                 <ul className={styles.dropdown}>
-                  <li>
-                    <Link
-                      to={"/shopall"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Shop All
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/wholespices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Whole Spices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/aromaticspices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Aromatic Spices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/herbsandleafyspices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Herbs and Leafy Spices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/sweetspices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Sweet Spices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/seeds"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Seeds
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/exoticregionalspices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Exotic/Regional Spices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={"/groundspices"}
-                      className={styles.dropdownItem}
-                      onClick={() => setDropdownVisible(false)}
-                    >
-                      Ground Spices
-                    </Link>
-                  </li>
+                  {[
+                    { path: "/shopall", label: "Shop All" },
+                    { path: "/wholespices", label: "Whole Spices" },
+                    { path: "/aromaticspices", label: "Aromatic Spices" },
+                    { path: "/herbsandleafyspices", label: "Herbs and Leafy Spices" },
+                    { path: "/sweetspices", label: "Sweet Spices" },
+                    { path: "/seeds", label: "Seeds" },
+                    { path: "/exoticregionalspices", label: "Exotic/Regional Spices" },
+                    { path: "/groundspices", label: "Ground Spices" },
+                  ].map(({ path, label }) => (
+                    <li key={path}>
+                      <Link
+                        to={path}
+                        className={styles.dropdownItem}
+                        onClick={closeDropdown}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               )}
             </div>
           </nav>
         </div>
         <div className="flex items-center gap-[45px]">
-          <Link to={"/login"}>
+          <Link to={"/auth/login"}>
             <button className="w-[100px] h-[45px] outline-none border border-[#7a7a7a] rounded-[75px] text-[#515151] text-[20px] font-medium bg-white cursor-pointer active:bg-[#f3f3f3]">
               Login
             </button>
