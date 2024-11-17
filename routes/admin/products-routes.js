@@ -1,5 +1,3 @@
-// BuildingFooz\server\routes\admin\products-routes.js
-
 const express = require("express");
 const {
   handleImageUpload,
@@ -7,12 +5,13 @@ const {
   editProduct,
   fetchAllProducts,
   deleteProduct,
-} = require("../../controllers/products-controller");  // corrected path
+} = require("../../controllers/Admin/products-controller"); // Controllers for product operations
 
-const { upload } = require("../../helpers/cloudinary");
+const { upload } = require("../../helpers/cloudinary"); 
 
 const router = express.Router();
 
+// Routes for handling product-related requests
 router.post("/upload-image", upload.single("my_file"), handleImageUpload);
 router.post("/add", addProduct);
 router.put("/edit/:id", editProduct);

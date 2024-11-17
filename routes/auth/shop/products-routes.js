@@ -1,5 +1,6 @@
 const express = require("express");
 
+// Importing controller functions for handling product routes
 const {
   getFilteredProducts,
   getProductDetails,
@@ -7,7 +8,10 @@ const {
 
 const router = express.Router();
 
+//fetching filtered products
 router.get("/get", getFilteredProducts);
+
+//fetching details product by ID
 router.get("/get/:id", getProductDetails);
 
 module.exports = router;
