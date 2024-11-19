@@ -1,0 +1,96 @@
+/* client/src/components/ProductList.css */
+/* client/src/components/ProductList.css */
+.container.product-list {
+    background-image: url('https://www.google.com/imgres?q=Hills%20of%20Wayanad&imgurl=https%3A%2F%2Fimages.herzindagi.info%2Fimage%2F2023%2FJul%2Fhill-stations-near-wayanad.jpg&imgrefurl=https%3A%2F%2Fwww.herzindagi.com%2Fdiary%2Fhill-stations-near-wayanad-kerala-article-236838&docid=Ih1gNNMJHUqNaM&tbnid=q7RMhg1IcI2b9M&vet=12ahUKEwjera_et92JAxXyyqACHSxfCooQM3oECEIQAA..i&w=1200&h=675&hcb=2&ved=2ahUKEwjera_et92JAxXyyqACHSxfCooQM3oECEIQAA.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #fff;
+  }
+  
+  .product-list h1 {
+    color: #fff;
+  }
+  
+  .product-item {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .product-item h2,
+  .product-item p {
+    color: #333;
+  }
+  
+  .product-item button {
+    background-color: #5c67f2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product-item button:hover {
+    background-color: #4b52c9;
+  }
+  
+/*.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .product-item h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .product-item p {
+    color: #666;
+  }
+
+.product-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }*/
+  

@@ -32,6 +32,10 @@ const Header = () => {
         </div>
         <div className="mx-auto text-2xl">
           <nav className="hidden md:flex space-x-6">
+          <Link to="/productList">Product List</Link>
+          <Link to="/add-product">Add Product</Link>
+          <Link to="/blog-posts">Blog Posts</Link>
+          <Link to="/customer-stories">Customer Stories</Link>
             <Link
               to={"/"}
               className={`${styles.navLink} ${

@@ -1,0 +1,85 @@
+/* client/src/components/CustomerStory.css */
+.container.customer-story {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .customer-story h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .customer-story form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .customer-story form input,
+  .customer-story form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .customer-story form button {
+    background-color: #5c67f2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .customer-story form button:hover {
+    background-color: #4b52c9;
+  }
+  
+  .story-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .story-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .story-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .story-item h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .story-item p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .story-item button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .story-item button:hover {
+    background-color: #e04444;
+  }
+  
