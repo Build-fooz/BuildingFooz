@@ -38,7 +38,7 @@ export const adminLogin = async (req, res) => {
 
 export const addProduct = async (req, res) => {
     try {
-        const { id } = req.params;
+
         const { title, description, category, price, salesPrice, totalStock, averageReview } = req.body;
 
         const image1 = req.files?.image1 && req.files.image1[0];
@@ -46,39 +46,42 @@ export const addProduct = async (req, res) => {
         const image3 = req.files?.image3 && req.files.image3[0];
         const image4 = req.files?.image4 && req.files.image4[0];
 
-        const imagesToUpload = [image1, image2, image3, image4].filter(item => item !== undefined && item !== null);
+        const imagesToUpload = [image1, image2, image3, image4].filter(item => item !== undefined);
 
-        const findProduct = await Product.findById(id);
-
-        if (!findProduct) {
-            return res.status(404).json({ message: 'Product not found' });
+        let imageUrl = await Promise.all(
+            imagesToUpload.map(async (item) => {
+                let result = await cloudinary.uploader.upload(item.path, { resource_type: 'image' })
+                return result.secure_url
+            })
+        )
+        if (!productData.title || !productData.description || !productData.category || !productData.price || !productData.salesPrice || !productData.totalStock || !productData.averageReview) {
+            return res.status(400).json({ message: 'All fields are required' });
         }
 
-        findProduct.title = title || findProduct.title;
-        findProduct.description = description || findProduct.description;
-        findProduct.category = category || findProduct.category;
-        findProduct.price = price || findProduct.price;
-        findProduct.salesPrice = salesPrice || findProduct.salesPrice;
-        findProduct.totalStock = totalStock || findProduct.totalStock;
-        findProduct.averageReview = averageReview || findProduct.averageReview;
-
-        if (imagesToUpload.length > 0) {
-            const imageUrls = await Promise.all(
-                imagesToUpload.map(async (image) => {
-                    const result = await cloudinary.uploader.upload(image.path, { resource_type: 'image' });
-                    return result.secure_url;
-                })
-            );
-            findProduct.images = [...findProduct.images, ...imageUrls];  // Add new images to existing ones
+        const productData = {
+            title,
+            description,
+            category,
+            price: Number(price),
+            salesPrice: Number(salesPrice),
+            totalStock: Number(totalStock),
+            averageReview: Number(averageReview),
+            images: imageUrl
         }
 
 
-        await findProduct.save();
+
+        const product = new Product(productData);
+        await product.save();
+
+
+
+
 
         res.json({
             success: true,
-            message: 'Product updated successfully',
-            product: findProduct,
+            message: 'Product Created successfully',
+            product: product,
         });
     } catch (error) {
         console.log(error);
