@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     favorites: {
-        type: Object,
-        default: {}
+        type: Array,
+        default: []
     },
     isAdmin: {
         type: Boolean,

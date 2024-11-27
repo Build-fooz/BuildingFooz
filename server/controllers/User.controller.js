@@ -2,6 +2,7 @@ import userModel from "../models/User.model.js";
 import jwt from 'jsonwebtoken'
 import validator from "validator";
 import bcryptjs from "bcryptjs";
+import Product from '../models/Product.js'
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' })
 }
@@ -144,4 +145,54 @@ export const logout = async (req, res) => {
         success: true,
         message: "User logged out successfully"
     })
+}
+
+export const AddToFavorites = async (req, res) => {
+    try {
+        const { userId, productId } = req.body
+        const user = await userModel.findById(userId)
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" })
+        }
+        const product = await Product.findById(productId)
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" })
+        }
+        if (user.favorites.includes(productId)) {
+            return res.status(400).json({ success: false, message: "Product already in favorites" })
+        }
+        user.favorites.push(productId)
+        await user.save()
+        res.json({ success: true, message: "Product added to favorites" })
+    } catch (error) {
+        console.log(error);
+        res.json({
+            success: false,
+            message: "Server error"
+        })
+
+    }
+}
+
+export const RemoveFromFavorites = async (req, res) => {
+    try {
+        const { userId, productId } = req.body
+        const user = await userModel.findById(userId)
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" })
+        }
+
+        if (!user.favorites.includes(productId)) {
+            return res.status(400).json({ success: false, message: "Product not in favorites" })
+        }
+        user.favorites = user.favorites.filter(id => id.toString() !== productId)
+        await user.save()
+        res.json({ success: true, message: "Product removed from favorites" })
+    } catch (error) {
+        console.log(error);
+        res.json({
+            success: false,
+            message: "Server error"
+        })
+    }
 }
