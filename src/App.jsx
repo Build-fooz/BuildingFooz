@@ -12,6 +12,7 @@ import WholeSpices from './Pages/WholeSpices'
 import Tea from './Pages/Tea'
 import Coffee from './Pages/Coffee'
 import PowderedSpices from './Pages/PowderedSpices'
+import EssentialOil from './Pages/EssentialOil'
 
 function App() {
   
@@ -35,7 +36,7 @@ return (
   <Route path='/Tea' element={<Tea/>}/>
   <Route path='/Coffee' element={<Coffee/>}/>
   <Route path='/Powdered-Spices' element={<PowderedSpices/>}/>
-
+  <Route path="/essentialoil" element={<EssentialOil />} />
 </Routes>
 </BrowserRouter>
 </div>

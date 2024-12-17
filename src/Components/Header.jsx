@@ -153,6 +153,15 @@ const Header = () => {
                       Ground Spices
                     </Link>
                   </li>
+                                    <li>
+                    <Link
+                      to={"/essentialoil"}
+                      className={styles.dropdownItem}
+                      onClick={() => setDropdownVisible(false)}
+                    >
+                      Essential Oils
+                    </Link>
+                  </li>
                 </ul>
               )}
             </div>

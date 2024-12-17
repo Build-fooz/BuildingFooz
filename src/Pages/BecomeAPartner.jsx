@@ -1,6 +1,14 @@
+import BlogSection from "../Components/Blogs/BlogSection"
+import Footer from "../Components/Footer/Footer"
+import PartnerSection from "../Components/PartnerSection/PartnerSection"
+
 const BecomeAPartner = () => {
   return (
-    <div>BecomeAPartner</div>
+    <div>
+      <PartnerSection/>
+      <BlogSection/>
+      <Footer/>
+    </div>
   )
 }
 export default BecomeAPartner
