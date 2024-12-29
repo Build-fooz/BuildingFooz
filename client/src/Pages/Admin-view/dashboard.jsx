@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import StatCard from "../../Components/admin-view/StatCard";
 import SalesOverviewChart from "../../Components/admin-view/SalerOverviewChart";
 import CategoryDistributionChart from "../../Components/admin-view/CategoryDistributionChart";
-import SalesChannelChart from "../../Components/admin-view/SalesChaneelChart";
+import SalesChannelChart from "../../Components/admin-view/SalesChannelChart";
 
 
 function AdminDashboard (){

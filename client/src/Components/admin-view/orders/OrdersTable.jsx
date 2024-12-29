@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { Search, Eye } from "lucide-react";
 
 const orderData = [
-	{ id: "ORD001", customer: "John Doe", total: 235.4, status: "Delivered", date: "2024-12-01" },
-	{ id: "ORD002", customer: "Jane Smith", total: 412.0, status: "Processing", date: "2024-12-02" },
-	{ id: "ORD003", customer: "Bob Johnson", total: 162.5, status: "Shipped", date: "2024-12-03" },
+	{ id: "1", customer: "Thohira", total: 235.4, status: "Delivered", date: "2024-12-01" },
+	{ id: "2", customer: "Gold fish", total: 412.0, status: "Processing", date: "2024-12-02" },
+	{ id: "3", customer: "Shark", total: 162.5, status: "Shipped", date: "2024-12-03" },
 	
 ];
 

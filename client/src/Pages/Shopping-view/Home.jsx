@@ -1,5 +1,5 @@
 import Hero from "../../Components/HeroSection/Hero"
-import TopCollections from "../../Components/TopCollections"
+import TopCollections from "../../Components/shopping-view/TopCollections"
 
 const Home = () => {
   return (

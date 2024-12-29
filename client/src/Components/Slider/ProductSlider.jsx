@@ -1,4 +1,5 @@
-// ProductSlider.js
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

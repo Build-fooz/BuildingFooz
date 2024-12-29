@@ -11,7 +11,7 @@ export const registerForm = [
     {
       name: "email",
       label: "Email",
-      placeholder: "Your email address",
+      placeholder: "Your@gmail.com",
       componentType: "input",
       type: "email",
     },
@@ -28,14 +28,14 @@ export const registerForm = [
     {
       name: "email",
       label: "Email",
-      placeholder: "Enter your email",
+      placeholder: "Your@gmail.com",
       componentType: "input",
       type: "email",
     },
     {
       name: "password",
       label: "Password",
-      placeholder: "Enter your password",
+      placeholder: "Remembered password? Enter here",
       componentType: "input",
       type: "password",
     },

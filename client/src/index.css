@@ -64,7 +64,6 @@
     @apply bg-background text-foreground;
   }
 }
-/* Add a custom z-index if your toast isn't appearing on top */
 .radix-toast-viewport {
   z-index: 1000;
 }

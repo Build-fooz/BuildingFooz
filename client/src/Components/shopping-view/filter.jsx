@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Options } from "@/config";
+import { Options } from "../../config";
 import { Fragment } from "react";
 import { Label } from "../ui/label";
 import { Checkbox } from "../ui/checkbox";

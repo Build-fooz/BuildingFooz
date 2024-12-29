@@ -1,20 +1,20 @@
 /* eslint-disable no-unused-vars */
-import ProductFilter from "@/components/shopping-view/filter";
-import ProductDetailsDialog from "@/components/shopping-view/product-details";
-import ShoppingProductTile from "@/components/shopping-view/product-tile";
-import { Button } from "@/components/ui/button";
+import ProductFilter from "../../Components/shopping-view/filter";
+import ProductDetailsDialog from "../../components/shopping-view/product-details";
+import ShoppingProductTile from "../../components/shopping-view/product-tile";
+import { Button } from "../../components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { sortOptions } from "@/config";
+} from "../../components/ui/dropdown-menu";
+import { sortOptions } from "../../config";
 import {
   fetchAllFilteredProducts,
   fetchProductDetails,
-} from "@/store/products-slice";
+} from "../../store/products-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

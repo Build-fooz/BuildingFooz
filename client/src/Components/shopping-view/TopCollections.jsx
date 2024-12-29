@@ -1,10 +1,11 @@
 import TopCollectionCard from "./TopCollectionCard";
 
-import photo1 from "../.././public/WholeSpices.png";
-import photo2 from "../.././public/Tea.png";
-import photo3 from "../.././public/Coffee.png";
-import photo4 from "../.././public/powderedSpices.png";
+import photo1 from "../../../public/WholeSpices.png";
+import photo2 from "../../../public/Tea.png";
+import photo3 from "../../../public/Coffee.png";
+import photo4 from "../../../public/powderedSpices.png";
 import { Link } from "react-router-dom";
+
 
 const TopCollections = () => {
     const cards = [photo1, photo2, photo3, photo4];
