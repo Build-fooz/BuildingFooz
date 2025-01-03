@@ -2,14 +2,14 @@ import './Herosec.css'
 import bg from "../.././../public/backgroundImage.png"
 import { FaArrowRight } from "react-icons/fa6";
 const Hero = () => {
-   const styles = {
+  const styles = {
     backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   };
   return (
-    <div className='mt-[1px]' >
+    <div className='mt-[1px] mr-[55px]' >
       <main className='m-auto h-[84vh]' style={styles}>
         <div className=' h-full w-full flex flex-col justify-center px-[10rem] ' >
           <div className="relative">
@@ -26,9 +26,9 @@ const Hero = () => {
             <span>Explore Now</span>
             <FaArrowRight />
           </button>
-      </div>
-      
-    </main>
+        </div>
+
+      </main>
     </div>
   )
 }

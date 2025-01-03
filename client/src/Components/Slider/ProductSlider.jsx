@@ -78,7 +78,7 @@ const ProductSlider = () => {
 
   return (
     <div className="product-slider">
-    <h2 className='font-bold text-[2.5rem] p-2 m-auto mt-4 mb-2 flex justify-center'>TOP COLLECTIONS</h2>
+      <h2 className='font-bold text-[2.5rem] p-2 m-auto mt-4 mb-2 flex justify-center'>TOP COLLECTIONS</h2>
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.id} className="product-card">

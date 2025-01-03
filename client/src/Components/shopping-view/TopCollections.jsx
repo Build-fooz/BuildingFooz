@@ -16,7 +16,7 @@ const TopCollections = () => {
         <div className="">
             <h2 className='font-bold text-[2.5rem] p-2 m-auto mt-4 mb-2 flex justify-center'>TOP COLLECTIONS</h2>
 
-            <div className='flex gap-[55px] ml-[150px] flex-wrap'>
+            <div className='flex gap-[55px] ml-[90px] flex-wrap'>
                 {cards.map((photo, index) => (
                     <Link key={index} to={linking[index]}>
                         <TopCollectionCard photo={photo} name={name[index]} />
