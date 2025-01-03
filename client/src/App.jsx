@@ -35,6 +35,7 @@ import { useEffect } from 'react';
 import { checkAuth } from './store/auth-slice';
 import { ThreeDots } from 'react-loader-spinner';
 import ForgotPassword from './Pages/auth/Forgotpassword';
+import Account from './Pages/Shopping-view/account';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,12 +53,13 @@ function App() {
         {/* Public Routes */}
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<AboutUs category="about" />} />
-        <Route path='/becomeapartner' element={<BecomeAPartner category="becomeapartner" />} />
+        <Route path='/partner' element={<BecomeAPartner category="becomeapartner" />} />
         <Route path='/favorite' element={<Favorite category="favorite" />} />
         <Route path='/product' element={<Product category="product" />}>
           <Route path=':productId' element={<Product />} />
         </Route>
         <Route path='/cart' element={<Cart />} />
+        <Route path='/account' element={<Account/>} />
         <Route path='/Whole-Spices' element={<WholeSpices />} />
         <Route path='/Tea' element={<Tea />} />
         <Route path='/Coffee' element={<Coffee />} />
@@ -65,13 +67,13 @@ function App() {
         <Route path='*' element={<Notfound />} /> 
 
         {/* Authentication Routes */}
-        <Route path='/auth' element={
+        <Route path='/user' element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <AuthLayout />
           </CheckAuth>
         }>
           <Route path='login' element={<AuthLogin />} />
-          <Route path='signup' element={<AuthSignUp />} />
+          <Route path='register' element={<AuthSignUp />} />
           <Route path='resetpassword/:token' element={<ResetPassword />} />
           <Route path='forgotpassword' element={<ForgotPassword />} />
         </Route> 

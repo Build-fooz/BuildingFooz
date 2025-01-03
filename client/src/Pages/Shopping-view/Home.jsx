@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import ProductSlider from "@/Components/Slider/ProductSlider"
 import Hero from "../../Components/HeroSection/Hero"
 import TopCollections from "../../Components/shopping-view/TopCollections"
@@ -11,7 +12,6 @@ const Home = () => {
     <div className="m-[15px]">
       <Hero />
       <TopCollections />
-
       <ProductSlider />
       <PromoBanner />
       <CategoryGrid />

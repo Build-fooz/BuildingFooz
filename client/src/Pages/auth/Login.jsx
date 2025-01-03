@@ -35,7 +35,7 @@ function AuthLogin() {
         <h1 className="text-4xl font-bold tracking-tight text-[#FF5722]">Login in to your account</h1>
         <p className="mt-5 text-xl text-gray-600">
           Don't have an account? 
-          <Link className="text-primary ml-2 text-xl hover:underline" to="/auth/signup">Sign Up</Link>
+          <Link className="text-primary ml-2 text-xl hover:underline" to="/user/register">Sign Up</Link>
         </p>   
       </div>
       <CommonForm
@@ -49,7 +49,7 @@ function AuthLogin() {
          {/* Forgot Password Link */}
       <p className="mt-2 text-right text-xl text-gray-600">
          Forgot password?
-          <Link className="text-primary ml-2  text-xl hover:underline" to="/auth/forgotpassword">
+          <Link className="text-primary ml-2  text-xl hover:underline" to="/user/forgotpassword">
             Verify email
           </Link>
         </p>

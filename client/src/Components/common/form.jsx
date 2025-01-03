@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 
 function CommonForm({
   formControls,
-  formData,
+  formData = {},
   setFormData,
   onSubmit,
   buttonText,
@@ -23,7 +23,7 @@ function CommonForm({
   //Renders the input by the component type
   function ComponentType(getControlItem) {
     let element = null;
-    const value = formData[getControlItem.name] || "";
+    const value = formData?.[getControlItem.name] || "";
     switch (getControlItem.componentType) {
       case "input":
         element = (

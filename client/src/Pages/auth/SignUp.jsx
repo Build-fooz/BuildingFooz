@@ -7,7 +7,7 @@ import { signUpUser } from '../../store/auth-slice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const initialState = {
-  userName: '',
+  name: '',
   email: '',
   password: '',
 };
@@ -22,12 +22,13 @@ function AuthSignUp() {
     dispatch(signUpUser(formData)).then((data) => {
       if (data?.payload?.success) {
         toast.success(data.payload.message);
-        navigate('/auth/login');
+        navigate('/user/login');
       } else {
         toast.error(data.payload?.message || "Registration failed! Please try again.");
       }
     });
   }
+  
 
   return (
     <div className="w-full max-w-4xl p-16 space-y-10 bg-white shadow-2xl rounded-2xl">
@@ -46,7 +47,7 @@ function AuthSignUp() {
       {/* Redirect to Login */}
       <p className="mt-2 text-center text-xl text-gray-600">
           Already have an account?
-          <Link className="text-primary text-xl ml-2 hover:underline" to="/auth/login">Login</Link>
+          <Link className="text-primary text-xl ml-2 hover:underline" to="/user/login">Login</Link>
         </p>   
     </div>
   );

@@ -1,45 +1,48 @@
 
 
 export const registerForm = [
-    {
-      name: "userName",
-      label: "User Name",
-      placeholder: "Your name? ex: John",
-      componentType: "input",
-      type: "text",
-    },
-    {
-      name: "email",
-      label: "Email",
-      placeholder: "Your@gmail.com",
-      componentType: "input",
-      type: "email",
-    },
-    {
-      name: "password",
-      label: "Password",
-      placeholder: "Create a strong password",
-      componentType: "input",
-      type: "password",
-    },
-  ];
-  
-  export const loginForm = [
-    {
-      name: "email",
-      label: "Email",
-      placeholder: "Your@gmail.com",
-      componentType: "input",
-      type: "email",
-    },
-    {
-      name: "password",
-      label: "Password",
-      placeholder: "Remembered password? Enter here",
-      componentType: "input",
-      type: "password",
-    },
-  ];
+  {
+    name: "name",
+    label: "User Name",
+    placeholder: "Your name? ex: John",
+    componentType: "input",
+    type: "text", 
+  },
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Your@gmail.com",
+    componentType: "input",
+    type: "email",
+  },
+  {
+    name: "password",
+    label: "Password",
+    placeholder: "Create a strong password",
+    componentType: "input",
+    type: "password",
+  },
+];
+
+export const loginForm = [
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Your@gmail.com",
+    componentType: "input",
+    type: "email",
+    autocomplete: "email",
+  },
+  {
+    name: "password",
+    label: "Password",
+    placeholder: "Remembered password? Enter here",
+    componentType: "input",
+    type: "password",
+    autocomplete: "current-password",
+  },
+];
+
 
   export const addProductForm = [
     {

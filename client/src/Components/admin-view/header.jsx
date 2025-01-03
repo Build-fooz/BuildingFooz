@@ -14,7 +14,7 @@ function AdminHeader({ setOpen }) {
     try {
       const response = await dispatch(logoutUser()).unwrap();
       if (response.success) {
-        navigate("/auth/login");
+        navigate("/user/login");
       } else {
         console.error("Logout failed");
       }

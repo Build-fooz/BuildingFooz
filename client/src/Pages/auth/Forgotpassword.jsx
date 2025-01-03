@@ -22,7 +22,7 @@ function ForgotPassword() {
     dispatch(sendOtp(formData)).then((data) => {
       if (data?.payload?.success) {
         toast.success("OTP sent to your email successfully.");
-        navigate('/auth/verifyotp',{ state: { email: formData.email } }); // Assuming a separate Verify OTP page exists
+        navigate('/user/verifyotp',{ state: { email: formData.email } }); 
       } else {
         toast.error(data.payload?.message || "Failed to send OTP! Please try again.");
       }
@@ -46,7 +46,7 @@ function ForgotPassword() {
           {/* Redirect to Login */}
       <p className="mt-2 text-xl text-gray-600">
           Remember your password?
-          <Link className="text-primary text-center ml-2 text-xl hover:underline" to="/auth/login">
+          <Link className="text-primary text-center ml-2 text-xl hover:underline" to="/user/login">
             Login
           </Link>
         </p>

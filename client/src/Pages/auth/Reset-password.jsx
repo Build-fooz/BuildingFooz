@@ -24,13 +24,11 @@ function ResetPassword() {
       toast.error("Passwords do not match!");
       return;
     }
-
     const { email } = location.state; //VerifyOtp
-
     dispatch(resetUserPassword({ email, ...formData })).then((data) => {
       if (data?.payload?.success) {
         toast.success(data.payload.message);
-        navigate('/auth/login');
+        navigate('/user/login');
       } else {
         toast.error(data.payload?.message || "Password reset failed! Please try again.");
       }

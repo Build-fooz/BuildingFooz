@@ -139,22 +139,22 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Avatar className="bg-black">
                   <AvatarFallback className="bg-black text-white font-bold">
-                    {user?.userName[0].toUpperCase()}
+                    {user?.name[0].toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent side="right" className="w-56">
                 <DropdownMenuLabel>
-                  Logged in as {user?.userName}
+                  Logged in as {user?.name}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => navigate("/shop/account")}>Account</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/account")}>Account</DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={Logout}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Link to="/auth/login">
+            <Link to="/user/login">
               <button className="px-4 py-2 text-gray-600 border border-gray-400 rounded-full hover:bg-gray-100">
                 Login
               </button>

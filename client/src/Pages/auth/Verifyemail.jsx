@@ -19,7 +19,7 @@ function VerifyOtp() {
     dispatch(verifyOtp({ email, otp })).then((data) => {
       if (data?.payload?.success) {
         toast.success("OTP verified successfully!");
-        navigate('/auth/resetpassword/${token}', { state: { email } }); //Reset Password
+        navigate('/user/resetpassword/${token}', { state: { email } }); //Reset Password
       } else {
         toast.error(data.payload?.message || "Invalid OTP! Please try again.");
       }

@@ -1,4 +1,3 @@
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -12,13 +11,13 @@ const initialState = {
 };
 
 //API requests
-const BASE_URL = "http://localhost:5000/api/auth";
+const BASE_URL = "http://localhost:5000/api/user";
 
 // Thunk to sign up a new user
 export const signUpUser = createAsyncThunk(
-  "auth/signUp",
+  "user/register",
   async (formData) => {
-    const response = await axios.post(`${BASE_URL}/signup`, formData, {
+    const response = await axios.post(`${BASE_URL}/register`, formData, {
       withCredentials: true,
     });
     return response.data;
@@ -32,13 +31,14 @@ export const loginUser = createAsyncThunk(
     const response = await axios.post(`${BASE_URL}/login`, formData, {
       withCredentials: true,
     });
+    console.log(response.data)
     return response.data;
   }
 );
 
 // log out
 export const logoutUser = createAsyncThunk(
-  "auth/logout",
+  "user/logout",
   async () => {
     const response = await axios.post(`${BASE_URL}/logout`, {}, {
       withCredentials: true,
@@ -52,10 +52,10 @@ export const logoutUser = createAsyncThunk(
 export const resetUserPassword = createAsyncThunk(
   'auth/resetpassword/:token',
   async (formData, {token}) => {
-      const response = await fetch('/api/resetpassword/${token}', {
+      const response = await fetch(`/api/resetpassword/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData,{token}),
+        body: JSON.stringify(formData),
       });
       return response.data;
     } 
@@ -63,16 +63,16 @@ export const resetUserPassword = createAsyncThunk(
 
 //OTP
 export const sendOtp = createAsyncThunk(
-  'auth/sendOtp',
+  'user/sendOtp',
   async (formData) => {
-      const response = await axios.post('/auth/send-otp', formData);
+      const response = await axios.post(`${BASE_URL}/send-otp`, formData);
       return response.data;
     }
 );
 
 //authentication status
 export const checkAuth = createAsyncThunk(
-  "auth/checkAuth",
+  "user/checkAuth",
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const token = state.auth.token; 
@@ -100,10 +100,9 @@ export const checkAuth = createAsyncThunk(
       throw error;
     }
   }
-);
-
+)
 const authSlice = createSlice({
-  name: "auth",
+  name: "user",
   initialState,
   reducers: {
     setUser: (state, action) => {
@@ -121,10 +120,11 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(signUpUser.rejected, (state) => {
+      .addCase(signUpUser.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
+        state.error = action.error?.message || "signup failed.";
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -134,10 +134,11 @@ const authSlice = createSlice({
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
+        state.error = action.error?.message || "Login failed.";
       })
       .addCase(checkAuth.pending, (state) => {
         state.isLoading = true;
