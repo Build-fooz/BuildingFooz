@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import './App.css';
+import individualuser from './Pages/images/individualuser.jpg';
+import retailer from './Pages/images/retailer.jpg';
+import './popup.css';
 import Header from './Components/shopping-view/header';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './Pages/Shopping-view/Home';
@@ -31,7 +34,7 @@ import Checkout from './Pages/Shopping-view/checkout';
 import CheckAuth from './Components/common/check-auth';
 import Unauthpage from './Pages/UnAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { checkAuth } from './store/auth-slice';
 import { ThreeDots } from 'react-loader-spinner';
 import ForgotPassword from './Pages/auth/Forgotpassword';
@@ -40,14 +43,62 @@ import Account from './Pages/Shopping-view/account';
 function App() {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useSelector((state) => state.auth);
+  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [userType, setUserType] = useState(null);
+
+  const handleUserTypeSelection = (type) => {
+    setUserType(type);
+    setIsPopupVisible(false);
+  };
 
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  if (isLoading) return <FancyLoader />; //Three dots Loader
+  // Show loading spinner if data is loading
+  if (isLoading) return <FancyLoader />;
+
   return (
     <div>
+      {isPopupVisible && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h1>Welcome to Fooz! </h1>
+            <h3>Please select your user type: </h3>
+            <div className="popup-images">
+              <div className="image-item">
+                <img
+                  src={individualuser}
+                  alt="Individual User"
+                  onClick={() => handleUserTypeSelection('Individual')}
+                  style={{ cursor: 'pointer' }}
+                />
+                <button
+                  className="select-button"
+                  onClick={() => handleUserTypeSelection('Individual')}
+                >
+                  I am an Individual User
+                </button>
+              </div>
+              <div className="image-item">
+                <img
+                  src={retailer}
+                  alt="Retailer"
+                  onClick={() => handleUserTypeSelection('Retailer')}
+                  style={{ cursor: 'pointer' }}
+                />
+                <button
+                  className="select-button"
+                  onClick={() => handleUserTypeSelection('Retailer')}
+                >
+                  I am a Retailer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <HeaderVisibility user={user} isAuthenticated={isAuthenticated} />
       <Routes>
         {/* Public Routes */}
@@ -59,12 +110,12 @@ function App() {
           <Route path=':productId' element={<Product />} />
         </Route>
         <Route path='/cart' element={<Cart />} />
-        <Route path='/account' element={<Account/>} />
+        <Route path='/account' element={<Account />} />
         <Route path='/Whole-Spices' element={<WholeSpices />} />
         <Route path='/Tea' element={<Tea />} />
         <Route path='/Coffee' element={<Coffee />} />
         <Route path='/Powdered-Spices' element={<PowderedSpices />} />
-        <Route path='*' element={<Notfound />} /> 
+        <Route path='*' element={<Notfound />} />
 
         {/* Authentication Routes */}
         <Route path='/user' element={
@@ -76,34 +127,33 @@ function App() {
           <Route path='register' element={<AuthSignUp />} />
           <Route path='resetpassword/:token' element={<ResetPassword />} />
           <Route path='forgotpassword' element={<ForgotPassword />} />
-        </Route> 
+        </Route>
 
         {/* Admin Routes */}
-        <Route
-    path='/admin'
-    element={
-      <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-        <AdminLayout />
-      </CheckAuth>
-    }
-  >
-    {/* Nested Routes */}
-    <Route path='dashboard' element={<AdminDashboard />} />
-    <Route path='products' element={<AdminProducts />} />
-    <Route path='orders' element={<AdminOrders />} />
-    <Route path='features' element={<AdminFeatures />} />
-    <Route path='sales' element={<AdminSalesPage />} />
-    <Route path='analytics' element={<AdminAnalyticsPage />} />
-    <Route path='settings' element={<AdminSettingsPage />} />
-  </Route>
+        <Route path='/admin' element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AdminLayout />
+          </CheckAuth>
+        }>
+          <Route path='dashboard' element={<AdminDashboard />} />
+          <Route path='products' element={<AdminProducts />} />
+          <Route path='orders' element={<AdminOrders />} />
+          <Route path='features' element={<AdminFeatures />} />
+          <Route path='sales' element={<AdminSalesPage />} />
+          <Route path='analytics' element={<AdminAnalyticsPage />} />
+          <Route path='settings' element={<AdminSettingsPage />} />
+        </Route>
+
         {/* Shop Route */}
         <Route path='/shopall' element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>{<ShoppingListing />}
-            <ShoppingLayout />
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <ShoppingLayout /> {/* Ensures layout is applied */}
           </CheckAuth>
-        }> 
+        }>
           <Route path='checkout' element={<Checkout />} />
+          <Route path='' element={<ShoppingListing />} /> {/* ShoppingListing as a child route */}
         </Route>
+
         {/* Unauthenticated Page */}
         <Route path='/unauthpage' element={<Unauthpage />} />
       </Routes>
@@ -114,7 +164,7 @@ function App() {
 //render header based on the user role and route
 function HeaderVisibility({ user, isAuthenticated }) {
   const location = useLocation();
-  const shouldRenderHeader = !location.pathname.startsWith("/admin") && 
+  const shouldRenderHeader = !location.pathname.startsWith("/admin") &&
     (!isAuthenticated || (user && user.role !== "admin"));
 
   return shouldRenderHeader ? <Header /> : null;
