@@ -19,7 +19,7 @@ function AdminDashboard (){
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					<StatCard label='Total Sales' icon={Zap} value='$--' color='#000000' />
+					<StatCard label='Total Sales' icon={Zap} value='₹--' color='#000000' />
 					<StatCard label='New Users' icon={Users} value='---' color='#000000' />
 					<StatCard label='Total Products' icon={ShoppingBag} value='---' color='#000000' />
 					<StatCard label='Conversion Rate' icon={BarChart2} value='---%' color='#000000' />

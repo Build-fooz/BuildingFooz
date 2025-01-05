@@ -21,8 +21,10 @@ function AuthLogin() {
   function onSubmit(event) {
     event.preventDefault();
     dispatch(loginUser(formData)).then((data) => {
+      console.log(data);
       if (data?.payload?.success) {
-        toast.success(data.payload.message);
+        console.log(formData);
+        toast.success(data.payload);
       } else {
         toast.error(data.payload?.message || "Login failed! Please try again.");
       }
@@ -32,7 +34,7 @@ function AuthLogin() {
   return (
     <div className="w-full max-w-4xl p-16 space-y-10 bg-white shadow-2xl rounded-2xl">
       <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-[#FF5722]">Login in to your account</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-[#FF5722]">Login to your account</h1>
         <p className="mt-5 text-xl text-gray-600">
           Don't have an account? 
           <Link className="text-primary ml-2 text-xl hover:underline" to="/user/register">Sign Up</Link>

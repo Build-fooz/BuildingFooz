@@ -21,7 +21,7 @@ function AuthSignUp() {
     event.preventDefault();
     dispatch(signUpUser(formData)).then((data) => {
       if (data?.payload?.success) {
-        toast.success(data.payload.message);
+        toast.success("Congrats! Registration Successful");
         navigate('/user/login');
       } else {
         toast.error(data.payload?.message || "Registration failed! Please try again.");

@@ -8,6 +8,7 @@ const initialState = {
   loading: false, 
   success: false, 
   error: null, 
+  message:"",
 };
 
 //API requests
@@ -26,12 +27,12 @@ export const signUpUser = createAsyncThunk(
 
 //log in
 export const loginUser = createAsyncThunk(
-  "auth/login",
+  "user/login",
   async (formData) => {
     const response = await axios.post(`${BASE_URL}/login`, formData, {
       withCredentials: true,
     });
-    console.log(response.data)
+    console.log("Login response:", response.data);
     return response.data;
   }
 );
@@ -50,7 +51,7 @@ export const logoutUser = createAsyncThunk(
 
 //reset password
 export const resetUserPassword = createAsyncThunk(
-  'auth/resetpassword/:token',
+  'user/resetpassword/:token',
   async (formData, {token}) => {
       const response = await fetch(`/api/resetpassword/${token}`, {
         method: 'POST',
@@ -102,7 +103,7 @@ export const checkAuth = createAsyncThunk(
   }
 )
 const authSlice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {
     setUser: (state, action) => {
@@ -130,6 +131,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        
         state.isLoading = false;
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;

@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { Search, Eye } from "lucide-react";
 
 const orderData = [
-	{ id: "1", customer: "Thohira", total: 235.4, status: "Delivered", date: "2024-12-01" },
-	{ id: "2", customer: "Gold fish", total: 412.0, status: "Processing", date: "2024-12-02" },
-	{ id: "3", customer: "Shark", total: 162.5, status: "Shipped", date: "2024-12-03" },
+	{ id: "1", customer: "Thohira", total: 235.4, status: "Delivered", date: "01-12-2024" },
+	{ id: "2", customer: "Gold fish", total: 412.0, status: "Processing", date: "02-12-2024" },
+	{ id: "3", customer: "Shark", total: 162.5, status: "Shipped", date: "03-12-2024" },
+	{ id: "4", customer: "Dolphin", total: 190.5, status: "Pending", date: "04-12-2024" },
+	
 	
 ];
 
@@ -83,7 +85,7 @@ const OrdersTable = () => {
 									{order.customer}
 								</td>
 								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-black-100'>
-									${order.total.toFixed(2)}
+								₹{order.total.toFixed(2)}
 								</td>
 								<td className='px-6 py-4 whitespace-nowrap text-sm text-black-300'>
 									<span

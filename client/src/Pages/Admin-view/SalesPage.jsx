@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 import StatCard from "../../Components/admin-view/StatCard";
 import { CreditCard, DollarSign, ShoppingCart, TrendingUp } from "lucide-react";
 import SalesOverviewChart from "../../Components/admin-view/sales/SalesOverviewChart";
@@ -7,8 +6,8 @@ import SalesByCategoryChart from "../../Components/admin-view/sales/SalesByCateg
 import DailySalesTrend from "../../Components/admin-view/sales/DailySalesTrend";
 
 const salesStats = {
-	totalRevenue: "$1,234,567",
-	averageOrderValue: "$78.90",
+	totalRevenue: "₹1,234,567",
+	averageOrderValue: "₹78.90",
 	conversionRate: "3.45%",
 	salesGrowth: "12.3%",
 };
@@ -19,7 +18,7 @@ const AdminSalesPage = () => {
 
 
 			<main className='max-w-7xl mx-auto py-6 px-4 lg:px-8'>
-				{/* SALES STATS */}
+				{/* SALES STATISTICS */}
 				<motion.div
 					className='grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8'
 					initial={{ opacity: 0, y: 20 }}

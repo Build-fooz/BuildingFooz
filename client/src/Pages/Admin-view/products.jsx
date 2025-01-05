@@ -116,7 +116,7 @@ function AdminProducts() {
 					<StatCard label='Total Products' icon={Package} value={1234} color='#6366F1' />
 					<StatCard label='Top Selling' icon={TrendingUp} value={89} color='#10B981' />
 					<StatCard label='Low Stock' icon={AlertTriangle} value={23} color='#F59E0B' />
-					<StatCard label='Total Revenue' icon={DollarSign} value={"$543,210"} color=' rgba(40, 20, 100, 0.)' />
+					<StatCard label='Total Revenue' icon={DollarSign} value={"₹543,210"} color=' rgba(40, 20, 100, 0.)' />
 				</motion.div>
       </div>
       <ToastContainer />
