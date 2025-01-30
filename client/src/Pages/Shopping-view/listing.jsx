@@ -73,6 +73,118 @@ function ShoppingListing() {
 
   const categorySearchParam = searchParams.get("Category");
 
+  // Dummy data for products
+  const dummyProductList = [
+    {
+      id: 1,
+      name: "Turmeric Powder",
+      price: 4.99,
+      stock: 50,
+      pricePerGram: 0.1, 
+      rating: 4.5, 
+      imageUrl: "/Aromatic Spices.png",
+    },
+    {
+      id: 2,
+      name: "Cumin Seeds",
+      price: 3.49,
+      stock: 30,
+      pricePerGram: 0.12,
+      rating: 3.9,
+      imageUrl: "/Cinnamon Sticks.png",
+    },
+    {
+      id: 3,
+      name: "Coriander Powder",
+      price: 2.99,
+      stock: 40,
+      pricePerGram: 0.08,
+      rating: 4.2,
+      imageUrl: "/Ground Spices.png",
+    },
+    {
+      id: 4,
+      name: "Chili Powder",
+      price: 5.49,
+      stock: 25,
+      pricePerGram: 0.15,
+      rating: 4.7,
+      imageUrl: "/Seeds.png",
+    },
+    {
+      id: 5,
+      name: "Turmeric Powder",
+      price: 4.99,
+      stock: 50,
+      pricePerGram: 0.1, 
+      rating: 4.5, 
+      imageUrl: "/Aromatic Spices.png",
+    },
+    {
+      id: 6,
+      name: "Cumin Seeds",
+      price: 3.49,
+      stock: 30,
+      pricePerGram: 0.12,
+      rating: 3.9,
+      imageUrl: "/Cinnamon Sticks.png",
+    },
+    {
+      id: 7,
+      name: "Coriander Powder",
+      price: 2.99,
+      stock: 40,
+      pricePerGram: 0.08,
+      rating: 4.2,
+      imageUrl: "/Ground Spices.png",
+    },
+    {
+      id: 8,
+      name: "Chili Powder",
+      price: 5.49,
+      stock: 25,
+      pricePerGram: 0.15,
+      rating: 4.7,
+      imageUrl: "/Seeds.png",
+    },
+    {
+      id: 9,
+      name: "Turmeric Powder",
+      price: 4.99,
+      stock: 50,
+      pricePerGram: 0.1, 
+      rating: 4.5, 
+      imageUrl: "/Aromatic Spices.png",
+    },
+    {
+      id: 10,
+      name: "Cumin Seeds",
+      price: 3.49,
+      stock: 30,
+      pricePerGram: 0.12,
+      rating: 3.9,
+      imageUrl: "/Cinnamon Sticks.png",
+    },
+    {
+      id: 11,
+      name: "Coriander Powder",
+      price: 2.99,
+      stock: 40,
+      pricePerGram: 0.08,
+      rating: 4.2,
+      imageUrl: "/Ground Spices.png",
+    },
+    {
+      id: 12,
+      name: "Chili Powder",
+      price: 5.49,
+      stock: 25,
+      pricePerGram: 0.15,
+      rating: 4.7,
+      imageUrl: "/Seeds.png",
+    },
+  ];
+
   // Handle sorting option change
   function handleSort(value) {
     setSort(value);
@@ -147,13 +259,13 @@ function ShoppingListing() {
     <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-6 p-4 md:p-6 bg-[#FFE4E1] w-full">
       {/* Filter Component */}
       <ProductFilter filters={filters} handleFilter={handleFilter} />
-      
+
       {/* Product List and Sorting */}
       <div className="bg-white rounded-lg shadow-md p-5 col-span-full md:col-span-1">
         <div className="p-4 border-b flex items-center justify-between bg-[#F5F5F5] rounded-md">
           <h2 className="text-3xl font-semibold text-gray-800">All Products</h2>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-500">{productList?.length} Products</span>
+            <span className="text-sm text-gray-500">{dummyProductList.length} Products</span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -182,22 +294,56 @@ function ShoppingListing() {
           </div>
         </div>
 
-        {/* Product Grid */}
+        {/* Product Grid for Spices */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 bg-white rounded-lg">
-          {productList && productList.length > 0
-            ? productList.map((productItem) => (
-                <ShoppingProductTile
-                  key={productItem.id}
-                  handleGetProductDetails={handleGetProductDetails}
-                  product={productItem}
-                  handleAddtoCart={handleAddtoCart}
-                  className="transition-transform transform hover:scale-105"
-                />
+          {dummyProductList && dummyProductList.length > 0
+            ? dummyProductList.map((productItem) => (
+                <div key={productItem.id} className="border p-4 rounded-lg shadow-md flex flex-col items-center bg-[#F5F5F5]">
+                  <img
+                    src={productItem.imageUrl} // Dummy image for each product
+                    alt={productItem.name}
+                    className="w-full h-48 object-cover rounded-md"
+                  />
+                  <h3 className="mt-2 text-lg font-semibold text-gray-800">{productItem.name}</h3>
+                  <p className="text-sm text-gray-600 mt-1">₹{productItem.price}</p> {/* Price in INR */}
+                  
+                  {/* Display price per gram */}
+                  <p className="text-sm text-gray-500 mt-1">₹{productItem.pricePerGram}/gram</p>
+
+                  {/* Star Rating Display */}
+                  <div className="mt-2 flex items-center">
+                    {[...Array(5)].map((_, index) => (
+                      <span
+                        key={index}
+                        className={`text-yellow-500 ${
+                          index < Math.floor(productItem.rating)
+                            ? "text-yellow-500"
+                            : index < Math.ceil(productItem.rating)
+                            ? "text-yellow-400"
+                            : "text-gray-300"
+                        }`}
+                      >
+                        {index < Math.floor(productItem.rating) ? "★" : "☆"}
+                      </span>
+                    ))}
+                    <span className="ml-2 text-sm text-gray-600">({productItem.rating})</span>
+                  </div>
+
+                  {/* Add to Cart Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3 text-white bg-[#FF6347] hover:bg-[#FF4500]"
+                    onClick={() => handleAddtoCart(productItem.id, productItem.stock)}
+                  >
+                    Add to Cart
+                  </Button>
+                </div>
               ))
-            : null}
+            : <div className="col-span-full text-center text-gray-500">No products available.</div>}
         </div>
       </div>
-      
+
       {/* Product Details Dialog */}
       <ProductDetailsDialog
         open={openDetailsDialog}
