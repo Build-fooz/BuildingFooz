@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import './App.css';
+import Products from './Pages/Shopping-view/Products';
 import individualuser from './Pages/images/individualuser.jpg';
 import retailer from './Pages/images/retailer.jpg';
 import './popup.css';
@@ -10,7 +11,7 @@ import Home from './Pages/Shopping-view/Home';
 import AboutUs from './Pages/Shopping-view/AboutUs';
 import BecomeAPartner from './Pages/Shopping-view/BecomeAPartner';
 import Favorite from './Pages/Shopping-view/Favorite';
-import Product from './Pages/Shopping-view/Product';
+import Product from './Pages/Shopping-view/Products';
 import Cart from './Pages/Shopping-view/Cart';
 import AuthLogin from './Pages/auth/Login';
 import AuthSignUp from './Pages/auth/SignUp';
@@ -111,6 +112,7 @@ function App() {
           <Route path=':productId' element={<Product />} />
         </Route>
         <Route path='/cart' element={<Cart />} />
+        <Route path="/" element={<Products />} />
         <Route path='/account' element={<Account />} />
         <Route path='/Whole-Spices' element={<WholeSpices />} />
         <Route path='/Tea' element={<Tea />} />
