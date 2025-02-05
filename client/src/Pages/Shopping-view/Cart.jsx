@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "@/store/cart-slice.js";
 import { Button } from "@/components/ui/button";
 
@@ -8,38 +8,62 @@ function CartPage() {
   const totalPrice = useSelector((state) => state.cart.totalPrice) || 0;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+    <div className="p-6 bg-[#F9F9F9]">
+      {/* Header */}
+      <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
 
+      {/* Cart Items */}
       {cartItems.length === 0 ? (
-        <p className="text-gray-500">No items in the cart</p>
+        <p className="text-gray-600">Your cart is empty!</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cartItems.map((item) => (
-            <div
-              key={item.productId}
-              className="border p-4 rounded-lg shadow-md flex flex-col items-center"
-            >
-              <img
-                src={item.image || "default_image.jpg"}
-                alt={item.name}
-                className="w-32 h-32 object-cover rounded-md"
-              />
-              <h3 className="mt-2 text-lg font-semibold">{item.name}</h3>
-              <p className="text-gray-600">₹{item.price}</p>
-              <p className="text-gray-500">Quantity: {item.quantity}</p>
-              <Button
-                className="mt-3 bg-red-500 text-white"
-                onClick={() => dispatch(removeFromCart(item.productId))}
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-8">
+          {/* Cart Details */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            {cartItems.map((item) => (
+              <div
+                key={item.productId}
+                className="flex items-center justify-between py-4 border-b"
               >
-                Remove
-              </Button>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={item.image || "/default_image.jpg"}
+                    alt={item.name}
+                    className="w-20 h-20 object-cover rounded-md"
+                  />
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.name}</h3>
+                    <p className="text-sm text-gray-600">
+                      Premium grade {item.name.toLowerCase()}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-lg font-semibold">₹{item.price}</p>
+                  <Button
+                    variant="link"
+                    className="text-red-500"
+                    onClick={() => dispatch(removeFromCart(item.productId))}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Order Summary */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            <div className="flex justify-between mb-4">
+              <span className="text-gray-600">Subtotal ({cartItems.length} items)</span>
+              <span className="font-semibold">₹{totalPrice}</span>
             </div>
-          ))}
+            <Button className="w-full bg-black text-white py-2 rounded-lg">
+              Proceed to Checkout
+            </Button>
+          </div>
         </div>
       )}
-
-      <h3 className="text-xl font-semibold mt-4">Total: ₹{totalPrice}</h3>
     </div>
   );
 }

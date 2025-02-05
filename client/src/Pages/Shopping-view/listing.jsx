@@ -15,7 +15,7 @@ const cartItemsSelector = createSelector(
   (cart) => cart?.items || []
 );
 
-function ShoppingListing() {
+function ProductList() {
   const dispatch = useDispatch();
   const cartItems = useSelector(cartItemsSelector);
   const [filters, setFilters] = useState({});
@@ -27,9 +27,17 @@ function ShoppingListing() {
     { id: 2, name: "Cumin Seeds", price: 3.49, stock: 30, imageUrl: "/Cinnamon Sticks.png" },
     { id: 3, name: "Coriander Powder", price: 2.99, stock: 40, imageUrl: "/Ground Spices.png" },
     { id: 4, name: "Chili Powder", price: 5.49, stock: 25, imageUrl: "/Seeds.png" },
+    { id: 5, name: "Turmeric Powder", price: 4.99, stock: 50, imageUrl: "/Aromatic Spices.png" },
+    { id: 6, name: "Cumin Seeds", price: 3.49, stock: 30, imageUrl: "/Cinnamon Sticks.png" },
+    { id: 7, name: "Coriander Powder", price: 2.99, stock: 40, imageUrl: "/Ground Spices.png" },
+    { id: 8, name: "Chili Powder", price: 5.49, stock: 25, imageUrl: "/Seeds.png" },
+    { id: 9, name: "Turmeric Powder", price: 4.99, stock: 50, imageUrl: "/Aromatic Spices.png" },
+    { id: 10, name: "Cumin Seeds", price: 3.49, stock: 30, imageUrl: "/Cinnamon Sticks.png" },
+    { id: 11, name: "Coriander Powder", price: 2.99, stock: 40, imageUrl: "/Ground Spices.png" },
+    { id: 12, name: "Chili Powder", price: 5.49, stock: 25, imageUrl: "/Seeds.png" },
   ];
 
-  function handleAddtoCart(product) {
+  function handleAddToCart(product) {
     const existingItem = cartItems.find((item) => item.productId === product.id);
     if (existingItem && existingItem.quantity >= product.stock) {
       toast.error(`Only ${product.stock - existingItem.quantity} more available.`);
@@ -75,7 +83,7 @@ function ShoppingListing() {
               <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" />
               <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
               <p className="text-sm">₹{product.price}</p>
-              <Button className="mt-3 bg-[#FF6347]" onClick={() => handleAddtoCart(product)}>
+              <Button className="mt-3 bg-[#FF6347]" onClick={() => handleAddToCart(product)}>
                 Add to Cart
               </Button>
             </div>
@@ -87,4 +95,4 @@ function ShoppingListing() {
   );
 }
 
-export default ShoppingListing;
+export default ProductList;
