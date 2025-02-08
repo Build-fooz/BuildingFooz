@@ -46,11 +46,11 @@ function ProductList() {
 
     dispatch(
       addToCart({
-        productId: product.id, // Use productId for consistency
+        productId: product.id, 
         quantity: 1,
         name: product.name,
         price: product.price,
-        image: product.imageUrl, // Ensure image is passed
+        image: product.imageUrl, 
       })
     );
 
